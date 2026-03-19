@@ -7,7 +7,7 @@
 
 <h5 align="center"> 
 
-<a href='https://arxiv.org/abs/2412.18319'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+<a href='https://arxiv.org/abs/2603.01050'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
 <a href='https://huggingface.co/HuanjinYao/MM-DeepResearch-8B'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue'>
 <a href='https://huggingface.co/datasets/HuanjinYao/MM-DeepResearch-corpus'><img src='https://img.shields.io/badge/Dataset-Huggingface-yellow'>
 
