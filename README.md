@@ -92,12 +92,16 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m sglang.launch_server \
 
 ### Step 3: Start agentic RL training
 
+We provide our SFT model [here](https://huggingface.co/HuanjinYao/MM-DeepResearch-8B-SFT). You can use it as the base model for agentic RL training.
+
+
 Before running, update the following configurations in `verl/run_scripts/mm_deepresearch.sh` to match your local setup:
 
 - `JUDGE_API_BASE`: Judge model API address (e.g., `http://your_ip:8001/v1`)
 - `SEARCH_CACHED_DATA_PATHS`: Path to the `lens_cached_data.jsonl` file for image-to-image search
 - `actor_rollout_ref.model.path`: Path to the base model (e.g., `Qwen3-VL-8B-Instruct`)
 - `data.train_files` / `data.val_files`: Paths to training and validation data
+
 
 Then start training:
 
