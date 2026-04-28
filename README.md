@@ -27,7 +27,7 @@
 
 
 ## 🔔 News
-- [x] **`April 28, 2026.`** We released the training code! ..
+- [x] **`April 28, 2026.`** We released the training code!
 - [x] **`Mar 13, 2026.`** We released the evaluation code and the [model](https://huggingface.co/HuanjinYao/MM-DeepResearch-8B). The training code will be open-sourced soon!
 - [x] **`Mar 1, 2026.`** We released MM-DeepResearch and made the paper available on [arxiv](https://arxiv.org/abs/2603.01050).
 
@@ -64,6 +64,7 @@ Download the training corpus from [HuggingFace](https://huggingface.co/datasets/
 | `lens_cached_data.jsonl` & `images.tar.gz` | Image-to-image search. Run the provided script to convert image paths to absolute paths. |
 | `image_search_result_rag.parquet` & `jina-clip-v2_Flat_image.index` | Text-to-image search. |
 | `merged_reindexed_new.jsonl` & `e5_Flat.index` | Text-to-text search. |
+| 'training_data_rl.parquet'  & 'MMSearch_test.parquet' | Training and testing dataset. |
 
 ### Step 2: Launch the offline retrieval engines and judge model
 
