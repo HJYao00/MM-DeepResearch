@@ -1,0 +1,119 @@
+tools:
+  - class_name: verl.tools.search_tool_image.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.81:8001/retrieve
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: image_search_by_text_query
+        description: Searches images on the web based on the given query and returns relevant image results with their associated titles.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              minItems: 1
+              maxItems: 1
+              item:
+                type: string
+              description: A list of fully-formed semantic queries for image search. The tool retrieves relevant images for this query.
+          required: 
+            - query_list
+  - class_name: verl.tools.search_tool_image_lens.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.81:8000/retrieve
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: image_search_by_lens
+        description: Performs an image search using the image from the original question, refined with complementary text queries, and returns relevant images with their associated titles.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              minItems: 1
+              maxItems: 1
+              item:
+                type: string
+              description: A list of text queries to accompany the image search. The tool retrieves relevant images for this image.
+          required: 
+            - query_list
+  - class_name: verl.tools.search_tool.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.81:8000/retrieve
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      topk: 3
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: text_search
+        description: Searches the web for relevant information based on the given query.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: A list of fully-formed semantic queries. The tool will return search results for each query.
+          required: 
+            - query_list
+  - class_name: verl.tools.search_tool_model.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.81:9000/v1
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: model_search
+        description: Queries an expert model to answer questions based on the given query.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: A list of fully-formed semantic queries. The tool will return the response for each query.
+          required: 
+            - query_list
+  - class_name: "verl.tools.image_zoom_in_tool.ImageZoomInTool"
+    config:
+      num_workers: 256
+      rate_limit: 256
+      timeout: 60
+      type: native
+    tool_schema:
+      type: "function"
+      function:
+        name: "image_zoom_in_tool"
+        description: "Zoom in on a specific region of an image by cropping it based on a bounding box (bbox) and an optional object label."
+        parameters:
+          type: "object"  
+          properties:
+            bbox_2d:
+              type: "array"
+              items:
+                type: "number"
+              minItems: 4
+              maxItems: 4
+              description: "The bounding box of the region to zoom in, as [x1, y1, x2, y2], where (x1, y1) is the top-left corner and (x2, y2) is the bottom-right corner."
+            label:
+              type: "string"
+              description: "The name or label of the object in the specified bounding box (optional)."
+          required: ["bbox_2d"]

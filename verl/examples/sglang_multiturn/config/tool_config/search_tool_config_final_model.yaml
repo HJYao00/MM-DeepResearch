@@ -1,0 +1,94 @@
+tools:
+  - class_name: verl.tools.search_tool_image.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.193:9001/retrieve
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: image_search_by_text_query
+        description: Searches images on the web based on the given query and returns relevant image results with their associated titles.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              minItems: 1
+              maxItems: 1
+              item:
+                type: string
+              description: A list of fully-formed semantic queries for image search. The tool retrieves relevant images for this query.
+          required: 
+            - query_list
+  - class_name: verl.tools.search_tool_image_lens.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.193:9000/retrieve
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: image_search_by_lens
+        description: Performs an image search using the image from the original question, refined with complementary text queries, and returns relevant images with their associated titles.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              minItems: 1
+              maxItems: 1
+              item:
+                type: string
+              description: A list of text queries to accompany the image search. The tool retrieves relevant images for this image.
+          required: 
+            - query_list
+  - class_name: verl.tools.search_tool.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.193:9000/retrieve
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      topk: 3
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: text_search
+        description: Searches the web for relevant information based on the given query.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: A list of fully-formed semantic queries. The tool will return search results for each query.
+          required: 
+            - query_list
+  - class_name: verl.tools.search_tool_model.SearchTool
+    config:
+      retrieval_service_url: http://10.124.162.193:8000/v1
+      num_workers: 120
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: model_search
+        description: Queries an expert model to answer questions based on the given query.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: A list of fully-formed semantic queries. The tool will return the response for each query.
+          required: 
+            - query_list
